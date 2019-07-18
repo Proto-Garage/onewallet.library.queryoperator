@@ -1,0 +1,41 @@
+{
+  "name": "onewallet.library.queroperator",
+  "version": "0.1.0",
+  "description": "Utility functions for query operators",
+  "main": "build/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint --fix src/**/*.ts",
+    "clean": "rimraf /build",
+    "build": "npm run clean && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Proto-Garage/onewallet.library.queryoperator.git"
+  },
+  "author": "High Output Ventures",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@typescript-eslint/eslint-plugin": "~1.6.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "husky": "^2.3.0",
+    "mocha": "^6.1.4",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@types/lru-cache": "^5.1.0",
+    "@types/ramda": "^0.26.16",
+    "lru-cache": "^5.1.1",
+    "onewallet.library.client": "git+ssh://github.com/Proto-Garage/onewallet.library.client.git#semver:^v3.25.4",
+    "onewallet.library.error": "git+https://github.com/Proto-Garage/onewallet.library.error.git#semver:~v0.1.0",
+    "onewallet.library.framework": "git+https://github.com/Proto-Garage/onewallet.library.framework.git#semver:^v1.19.0",
+    "ramda": "^0.26.1"
+  }
+}
