@@ -7,7 +7,8 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint --fix src/**/*.ts",
     "clean": "rimraf /build",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "test": "DEBUG=error*,warn*,info* TS_NODE_PROJECT=tsconfig.json TS_NODE_FILES=true mocha ./test/**/*.spec.ts"
   },
   "repository": {
     "type": "git",
