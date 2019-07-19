@@ -1,4 +1,5 @@
 import R from 'ramda';
+import { ID } from 'onewallet.library.client';
 
 export type StringQueryOperator = Partial<{
   eq: string;
@@ -6,6 +7,13 @@ export type StringQueryOperator = Partial<{
   in: string[];
   nin: string[];
   startsWith: string;
+}>;
+
+export type IDQueryOperator = Partial<{
+  eq: ID;
+  ne: ID;
+  in: ID[];
+  nin: ID[];
 }>;
 
 export type IntQueryOperator = Partial<{
@@ -65,6 +73,12 @@ function convertToMongoDBQuery(queryOperator: StringQueryOperator): Partial<{
   $in: string[];
   $nin: string[];
   $regex: RegExp;
+}>
+function convertToMongoDBQuery(queryOperator: IDQueryOperator): Partial<{
+  $eq: ID;
+  $ne: ID;
+  $in: ID[];
+  $nin: ID[];
 }>
 function convertToMongoDBQuery(queryOperator: IntQueryOperator): NumberMongoDBQuery;
 function convertToMongoDBQuery(queryOperator: FloatQueryOperator): NumberMongoDBQuery;

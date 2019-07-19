@@ -1,9 +1,16 @@
+import { ID } from 'onewallet.library.client';
 export declare type StringQueryOperator = Partial<{
     eq: string;
     ne: string;
     in: string[];
     nin: string[];
     startsWith: string;
+}>;
+export declare type IDQueryOperator = Partial<{
+    eq: ID;
+    ne: ID;
+    in: ID[];
+    nin: ID[];
 }>;
 export declare type IntQueryOperator = Partial<{
     eq: number;
@@ -53,6 +60,12 @@ declare function convertToMongoDBQuery(queryOperator: StringQueryOperator): Part
     $in: string[];
     $nin: string[];
     $regex: RegExp;
+}>;
+declare function convertToMongoDBQuery(queryOperator: IDQueryOperator): Partial<{
+    $eq: ID;
+    $ne: ID;
+    $in: ID[];
+    $nin: ID[];
 }>;
 declare function convertToMongoDBQuery(queryOperator: IntQueryOperator): NumberMongoDBQuery;
 declare function convertToMongoDBQuery(queryOperator: FloatQueryOperator): NumberMongoDBQuery;

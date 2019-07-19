@@ -35,8 +35,6 @@
     "@types/ramda": "^0.26.16",
     "lru-cache": "^5.1.1",
     "onewallet.library.client": "git+https://github.com/Proto-Garage/onewallet.library.client.git#semver:^v3.31.1",
-    "onewallet.library.error": "git+https://github.com/Proto-Garage/onewallet.library.error.git#semver:~v0.1.0",
-    "onewallet.library.framework": "git+https://github.com/Proto-Garage/onewallet.library.framework.git#semver:^v1.19.0",
     "ramda": "^0.26.1"
   }
 }
