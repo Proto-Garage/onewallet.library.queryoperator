@@ -46,7 +46,7 @@ const operators = new Set([
   'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'startsWith',
 ]);
 
-type NumberMongoDBQuery = Partial<{
+type NumberMongooseQuery = Partial<{
   $eq: number;
   $ne: number;
   $gt: number;
@@ -56,7 +56,8 @@ type NumberMongoDBQuery = Partial<{
   $in: number[];
   $nin: number[];
 }>;
-type DateMongoDBQuery = Partial<{
+
+type DateMongooseQuery = Partial<{
   eq: Date;
   ne: Date;
   gt: Date;
@@ -67,24 +68,24 @@ type DateMongoDBQuery = Partial<{
   nin: Date[];
 }>;
 
-function convertToMongoDBQuery(queryOperator: StringQueryOperator): Partial<{
+function convertToMongooseQuery(queryOperator: StringQueryOperator): Partial<{
   $eq: string;
   $ne: string;
   $in: string[];
   $nin: string[];
   $regex: RegExp;
 }>
-function convertToMongoDBQuery(queryOperator: IDQueryOperator): Partial<{
+function convertToMongooseQuery(queryOperator: IDQueryOperator): Partial<{
   $eq: ID;
   $ne: ID;
   $in: ID[];
   $nin: ID[];
 }>
-function convertToMongoDBQuery(queryOperator: IntQueryOperator): NumberMongoDBQuery;
-function convertToMongoDBQuery(queryOperator: FloatQueryOperator): NumberMongoDBQuery;
-function convertToMongoDBQuery(queryOperator: DateTimeQueryOperator): DateMongoDBQuery;
-function convertToMongoDBQuery(queryOperator: DateQueryOperator): DateMongoDBQuery;
-function convertToMongoDBQuery(queryOperator: Record<string, any>) {
+function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongooseQuery;
+function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;
+function convertToMongooseQuery(queryOperator: DateTimeQueryOperator): DateMongooseQuery;
+function convertToMongooseQuery(queryOperator: DateQueryOperator): DateMongooseQuery;
+function convertToMongooseQuery(queryOperator: Record<string, any>) {
   return R.compose<any, any, any, any, any>(
     R.fromPairs,
     R.filter<any>(R.identity),
@@ -108,4 +109,4 @@ function convertToMongoDBQuery(queryOperator: Record<string, any>) {
   )(queryOperator);
 }
 
-export { convertToMongoDBQuery };
+export { convertToMongooseQuery };

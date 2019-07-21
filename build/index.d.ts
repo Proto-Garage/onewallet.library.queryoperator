@@ -34,7 +34,7 @@ export declare type DateTimeQueryOperator = Partial<{
     nin: Date[];
 }>;
 export declare type DateQueryOperator = DateTimeQueryOperator;
-declare type NumberMongoDBQuery = Partial<{
+declare type NumberMongooseQuery = Partial<{
     $eq: number;
     $ne: number;
     $gt: number;
@@ -44,7 +44,7 @@ declare type NumberMongoDBQuery = Partial<{
     $in: number[];
     $nin: number[];
 }>;
-declare type DateMongoDBQuery = Partial<{
+declare type DateMongooseQuery = Partial<{
     eq: Date;
     ne: Date;
     gt: Date;
@@ -54,22 +54,22 @@ declare type DateMongoDBQuery = Partial<{
     in: Date[];
     nin: Date[];
 }>;
-declare function convertToMongoDBQuery(queryOperator: StringQueryOperator): Partial<{
+declare function convertToMongooseQuery(queryOperator: StringQueryOperator): Partial<{
     $eq: string;
     $ne: string;
     $in: string[];
     $nin: string[];
     $regex: RegExp;
 }>;
-declare function convertToMongoDBQuery(queryOperator: IDQueryOperator): Partial<{
+declare function convertToMongooseQuery(queryOperator: IDQueryOperator): Partial<{
     $eq: ID;
     $ne: ID;
     $in: ID[];
     $nin: ID[];
 }>;
-declare function convertToMongoDBQuery(queryOperator: IntQueryOperator): NumberMongoDBQuery;
-declare function convertToMongoDBQuery(queryOperator: FloatQueryOperator): NumberMongoDBQuery;
-declare function convertToMongoDBQuery(queryOperator: DateTimeQueryOperator): DateMongoDBQuery;
-declare function convertToMongoDBQuery(queryOperator: DateQueryOperator): DateMongoDBQuery;
-export { convertToMongoDBQuery };
+declare function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongooseQuery;
+declare function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;
+declare function convertToMongooseQuery(queryOperator: DateTimeQueryOperator): DateMongooseQuery;
+declare function convertToMongooseQuery(queryOperator: DateQueryOperator): DateMongooseQuery;
+export { convertToMongooseQuery };
 //# sourceMappingURL=index.d.ts.map

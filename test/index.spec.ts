@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import { convertToMongoDBQuery } from '../src';
+import { convertToMongooseQuery } from '../src';
 
-describe('convertToMongoDBQuery(queryOperator: StringQueryOperator)', () => {
-  it('should return a valid MongoDB query', () => {
+describe('convertToMongooseQuery(queryOperator: StringQueryOperator)', () => {
+  it('should return a valid mongoose query', () => {
     const data = [{
       input: {
         eq: 'hello',
@@ -34,25 +34,25 @@ describe('convertToMongoDBQuery(queryOperator: StringQueryOperator)', () => {
     }];
 
     for (const { input, output } of data) {
-      expect(convertToMongoDBQuery(input)).to.deep.equal(output);
+      expect(convertToMongooseQuery(input)).to.deep.equal(output);
     }
   });
 
   describe('Given a `startsWith` operator', () => {
-    it('should return a valid MongoDB query with $regex operator', () => {
+    it('should return a valid Mongoose query with $regex operator', () => {
       const queryOperator = {
         startsWith: 'mem',
       };
 
-      expect(convertToMongoDBQuery(queryOperator)).to.deep.equal({
+      expect(convertToMongooseQuery(queryOperator)).to.deep.equal({
         $regex: /^mem.*$/i,
       });
     });
   });
 });
 
-describe('convertToMongoDBQuery(queryOperator: IntQueryOperator)', () => {
-  it('should return a valid MongoDB query', () => {
+describe('convertToMongooseQuery(queryOperator: IntQueryOperator)', () => {
+  it('should return a valid Mongoose query', () => {
     const data = [{
       input: {
         gt: 5,
@@ -84,7 +84,7 @@ describe('convertToMongoDBQuery(queryOperator: IntQueryOperator)', () => {
     }];
 
     for (const { input, output } of data) {
-      expect(convertToMongoDBQuery(input)).to.deep.equal(output);
+      expect(convertToMongooseQuery(input)).to.deep.equal(output);
     }
   });
 });
