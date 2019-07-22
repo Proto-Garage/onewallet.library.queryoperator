@@ -10,14 +10,14 @@ declare type NumberMongooseQuery = Partial<{
     $nin: number[];
 }>;
 declare type DateMongooseQuery = Partial<{
-    eq: Date;
-    ne: Date;
-    gt: Date;
-    gte: Date;
-    lt: Date;
-    lte: Date;
-    in: Date[];
-    nin: Date[];
+    $eq: Date;
+    $ne: Date;
+    $gt: Date;
+    $gte: Date;
+    $lt: Date;
+    $lte: Date;
+    $in: Date[];
+    $nin: Date[];
 }>;
 declare function convertToMongooseQuery(queryOperator: StringQueryOperator): Partial<{
     $eq: string;

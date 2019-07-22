@@ -26,14 +26,14 @@ type NumberMongooseQuery = Partial<{
 }>;
 
 type DateMongooseQuery = Partial<{
-  eq: Date;
-  ne: Date;
-  gt: Date;
-  gte: Date;
-  lt: Date;
-  lte: Date;
-  in: Date[];
-  nin: Date[];
+  $eq: Date;
+  $ne: Date;
+  $gt: Date;
+  $gte: Date;
+  $lt: Date;
+  $lte: Date;
+  $in: Date[];
+  $nin: Date[];
 }>;
 
 function convertToMongooseQuery(queryOperator: StringQueryOperator): Partial<{
@@ -53,7 +53,7 @@ function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongoose
 function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;
 function convertToMongooseQuery(queryOperator: DateTimeQueryOperator): DateMongooseQuery;
 function convertToMongooseQuery(queryOperator: DateQueryOperator): DateMongooseQuery;
-function convertToMongooseQuery(queryOperator: Record<string, any>) {
+function convertToMongooseQuery(queryOperator: Record<any, any>) {
   return R.compose<any, any, any, any, any>(
     R.fromPairs,
     R.filter<any>(R.identity),
