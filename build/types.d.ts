@@ -1,38 +1,21 @@
 import { ID } from 'onewallet.library.client';
 export { ID };
-export declare type StringQueryOperator = Partial<{
-    eq: string;
-    ne: string;
-    in: string[];
-    nin: string[];
+declare type Operator<T = any> = Partial<{
+    eq: T;
+    ne: T;
+    gt: T;
+    gte: T;
+    lt: T;
+    lte: T;
+    in: T[];
+    nin: T[];
     startsWith: string;
 }>;
-export declare type IDQueryOperator = Partial<{
-    eq: ID;
-    ne: ID;
-    in: ID[];
-    nin: ID[];
-}>;
-export declare type IntQueryOperator = Partial<{
-    eq: number;
-    ne: number;
-    gt: number;
-    gte: number;
-    lt: number;
-    lte: number;
-    in: number[];
-    nin: number[];
-}>;
+export declare type QueryOperator<TValue, TOperator extends keyof Operator> = Pick<Operator<TValue>, TOperator>;
+export declare type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith'>;
+export declare type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
+export declare type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 export declare type FloatQueryOperator = IntQueryOperator;
-export declare type DateTimeQueryOperator = Partial<{
-    eq: Date;
-    ne: Date;
-    gt: Date;
-    gte: Date;
-    lt: Date;
-    lte: Date;
-    in: Date[];
-    nin: Date[];
-}>;
+export declare type DateTimeQueryOperator = QueryOperator<Date, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 export declare type DateQueryOperator = DateTimeQueryOperator;
 //# sourceMappingURL=types.d.ts.map
