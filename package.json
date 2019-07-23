@@ -35,7 +35,6 @@
     "@types/ramda": "^0.26.16",
     "@types/sequelize": "^4.28.3",
     "lru-cache": "^5.1.1",
-    "onewallet.library.client": "git+https://github.com/Proto-Garage/onewallet.library.client.git#semver:^v3.31.1",
     "ramda": "^0.26.1",
     "sequelize": "^5.10.1"
   }

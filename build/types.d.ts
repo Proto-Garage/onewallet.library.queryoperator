@@ -1,5 +1,4 @@
-import { ID } from 'onewallet.library.client';
-export { ID };
+export declare type ID = string;
 declare type Operator<T = any> = Partial<{
     eq: T;
     ne: T;
@@ -18,4 +17,5 @@ export declare type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' 
 export declare type FloatQueryOperator = IntQueryOperator;
 export declare type DateTimeQueryOperator = QueryOperator<Date, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 export declare type DateQueryOperator = DateTimeQueryOperator;
+export {};
 //# sourceMappingURL=types.d.ts.map

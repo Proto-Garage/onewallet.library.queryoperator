@@ -1,6 +1,4 @@
-import { ID } from 'onewallet.library.client';
-
-export { ID };
+export type ID = string;
 
 type Operator<T = any> = Partial<{
   eq: T;
