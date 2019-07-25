@@ -1,5 +1,5 @@
 {
-  "name": "onewallet.library.queroperator",
+  "name": "onewallet.library.queryoperator",
   "version": "0.4.1",
   "description": "Utility functions for query operators",
   "main": "build/index.js",
