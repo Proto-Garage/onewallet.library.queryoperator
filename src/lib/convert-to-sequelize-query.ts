@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+import { Op } from 'sequelize';
 import R from 'ramda';
 
 import {
@@ -12,45 +12,45 @@ import {
 } from '../types';
 
 const operators = {
-  eq: Sequelize.Op.eq,
-  ne: Sequelize.Op.ne,
-  in: Sequelize.Op.in,
-  nin: Sequelize.Op.notIn,
-  gt: Sequelize.Op.gt,
-  gte: Sequelize.Op.gte,
-  lt: Sequelize.Op.lt,
-  lte: Sequelize.Op.lte,
-  startsWith: Sequelize.Op.like,
+  eq: Op.eq,
+  ne: Op.ne,
+  in: Op.in,
+  nin: Op.notIn,
+  gt: Op.gt,
+  gte: Op.gte,
+  lt: Op.lt,
+  lte: Op.lte,
+  startsWith: Op.like,
 };
 
 type NumberSequelizeQuery = Partial<{
-  [Sequelize.Op.eq]: number;
-  [Sequelize.Op.ne]: number;
-  [Sequelize.Op.gt]: number;
-  [Sequelize.Op.gte]: number;
-  [Sequelize.Op.lt]: number;
-  [Sequelize.Op.lte]: number;
-  [Sequelize.Op.in]: number[];
-  [Sequelize.Op.notIn]: number[];
+  [Op.eq]: number;
+  [Op.ne]: number;
+  [Op.gt]: number;
+  [Op.gte]: number;
+  [Op.lt]: number;
+  [Op.lte]: number;
+  [Op.in]: number[];
+  [Op.notIn]: number[];
 }>;
 
 type DateSequelizeQuery = Partial<{
-  [Sequelize.Op.eq]: Date;
-  [Sequelize.Op.ne]: Date;
-  [Sequelize.Op.gt]: Date;
-  [Sequelize.Op.gte]: Date;
-  [Sequelize.Op.lt]: Date;
-  [Sequelize.Op.lte]: Date;
-  [Sequelize.Op.in]: Date[];
-  [Sequelize.Op.notIn]: Date[];
+  [Op.eq]: Date;
+  [Op.ne]: Date;
+  [Op.gt]: Date;
+  [Op.gte]: Date;
+  [Op.lt]: Date;
+  [Op.lte]: Date;
+  [Op.in]: Date[];
+  [Op.notIn]: Date[];
 }>;
 
 function convertToSequelizeQuery(queryOperator: StringQueryOperator): Partial<{
-  [Sequelize.Op.eq]: string;
-  [Sequelize.Op.ne]: string;
-  [Sequelize.Op.in]: string[];
-  [Sequelize.Op.notIn]: string[];
-  [Sequelize.Op.like]: RegExp;
+  [Op.eq]: string;
+  [Op.ne]: string;
+  [Op.in]: string[];
+  [Op.notIn]: string[];
+  [Op.like]: RegExp;
 }>
 function convertToSequelizeQuery(queryOperator: IDQueryOperator): Partial<{
   $eq: ID;
@@ -72,7 +72,7 @@ function convertToSequelizeQuery(queryOperator: Record<any, any>) {
       }
 
       if (key === 'startsWith') {
-        return [Sequelize.Op.like, `${value}%`];
+        return [Op.like, `${value}%`];
       }
 
       return [key, value];
