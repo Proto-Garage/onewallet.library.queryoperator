@@ -18,6 +18,8 @@ export type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'ni
 
 export type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 
+export type IDArrayQueryOperator = QueryOperator<ID[], 'in' | 'nin'>;
+
 export type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 
 export type FloatQueryOperator = IntQueryOperator;
