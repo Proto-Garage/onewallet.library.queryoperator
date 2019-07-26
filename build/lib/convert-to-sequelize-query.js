@@ -3,18 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = __importDefault(require("sequelize"));
+const sequelize_1 = require("sequelize");
 const ramda_1 = __importDefault(require("ramda"));
 const operators = {
-    eq: sequelize_1.default.Op.eq,
-    ne: sequelize_1.default.Op.ne,
-    in: sequelize_1.default.Op.in,
-    nin: sequelize_1.default.Op.notIn,
-    gt: sequelize_1.default.Op.gt,
-    gte: sequelize_1.default.Op.gte,
-    lt: sequelize_1.default.Op.lt,
-    lte: sequelize_1.default.Op.lte,
-    startsWith: sequelize_1.default.Op.like,
+    eq: sequelize_1.Op.eq,
+    ne: sequelize_1.Op.ne,
+    in: sequelize_1.Op.in,
+    nin: sequelize_1.Op.notIn,
+    gt: sequelize_1.Op.gt,
+    gte: sequelize_1.Op.gte,
+    lt: sequelize_1.Op.lt,
+    lte: sequelize_1.Op.lte,
+    overlap: sequelize_1.Op.overlap,
+    startsWith: sequelize_1.Op.like,
 };
 function convertToSequelizeQuery(queryOperator) {
     return ramda_1.default.compose(ramda_1.default.fromPairs, ramda_1.default.filter(ramda_1.default.identity), ramda_1.default.map(([key, value]) => {
@@ -22,7 +23,7 @@ function convertToSequelizeQuery(queryOperator) {
             return null;
         }
         if (key === 'startsWith') {
-            return [sequelize_1.default.Op.like, `${value}%`];
+            return [sequelize_1.Op.like, `${value}%`];
         }
         return [ramda_1.default.prop(key, operators), value];
     }), ramda_1.default.toPairs)(queryOperator);

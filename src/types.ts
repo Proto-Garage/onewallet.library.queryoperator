@@ -9,6 +9,7 @@ type Operator<T = any> = Partial<{
   lte: T;
   in: T[];
   nin: T[];
+  overlap: T[];
   startsWith: string;
 }>;
 export type QueryOperator<TValue, TOperator extends keyof Operator> =
@@ -18,7 +19,7 @@ export type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'ni
 
 export type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 
-export type IDArrayQueryOperator = QueryOperator<ID, 'in' | 'nin'>;
+export type IDArrayQueryOperator = QueryOperator<ID, 'overlap'>;
 
 export type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 

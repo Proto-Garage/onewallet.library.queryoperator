@@ -1,4 +1,4 @@
-import { StringQueryOperator, IDQueryOperator, IntQueryOperator, FloatQueryOperator, DateTimeQueryOperator, DateQueryOperator, ID } from '../types';
+import { StringQueryOperator, IDQueryOperator, IDArrayQueryOperator, IntQueryOperator, FloatQueryOperator, DateTimeQueryOperator, DateQueryOperator, ID } from '../types';
 declare type NumberMongooseQuery = Partial<{
     $eq: number;
     $ne: number;
@@ -31,6 +31,9 @@ declare function convertToMongooseQuery(queryOperator: IDQueryOperator): Partial
     $ne: ID;
     $in: ID[];
     $nin: ID[];
+}>;
+declare function convertToMongooseQuery(queryOperator: IDArrayQueryOperator): Partial<{
+    $in: ID[];
 }>;
 declare function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongooseQuery;
 declare function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;

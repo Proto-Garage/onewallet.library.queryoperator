@@ -3,6 +3,7 @@ import R from 'ramda';
 import {
   StringQueryOperator,
   IDQueryOperator,
+  IDArrayQueryOperator,
   IntQueryOperator,
   FloatQueryOperator,
   DateTimeQueryOperator,
@@ -11,7 +12,7 @@ import {
 } from '../types';
 
 const operators = new Set([
-  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'startsWith',
+  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlap', 'startsWith',
 ]);
 
 type NumberMongooseQuery = Partial<{
@@ -49,6 +50,9 @@ function convertToMongooseQuery(queryOperator: IDQueryOperator): Partial<{
   $in: ID[];
   $nin: ID[];
 }>
+function convertToMongooseQuery(queryOperator: IDArrayQueryOperator): Partial<{
+  $in: ID[];
+}>
 function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongooseQuery;
 function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;
 function convertToMongooseQuery(queryOperator: DateTimeQueryOperator): DateMongooseQuery;
@@ -69,6 +73,10 @@ function convertToMongooseQuery(queryOperator: Record<any, any>) {
         );
 
         return ['$regex', regex];
+      }
+
+      if (key === 'overlap') {
+        return ['$in', value];
       }
 
       return [`$${key}`, value];
