@@ -18,13 +18,13 @@ const operators = {
 };
 function convertToSequelizeQuery(queryOperator) {
     return ramda_1.default.compose(ramda_1.default.fromPairs, ramda_1.default.filter(ramda_1.default.identity), ramda_1.default.map(([key, value]) => {
-        if (!ramda_1.default.has('key')(operators)) {
+        if (!ramda_1.default.has(key, operators)) {
             return null;
         }
         if (key === 'startsWith') {
             return [sequelize_1.default.Op.like, `${value}%`];
         }
-        return [key, value];
+        return [ramda_1.default.prop(key, operators), value];
     }), ramda_1.default.toPairs)(queryOperator);
 }
 exports.default = convertToSequelizeQuery;

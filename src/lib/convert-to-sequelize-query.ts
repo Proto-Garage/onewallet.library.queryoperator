@@ -67,7 +67,7 @@ function convertToSequelizeQuery(queryOperator: Record<any, any>) {
     R.fromPairs,
     R.filter<any>(R.identity),
     R.map(([key, value]) => {
-      if (!R.has('key')(operators)) {
+      if (!R.has(key, operators)) {
         return null;
       }
 
@@ -75,7 +75,7 @@ function convertToSequelizeQuery(queryOperator: Record<any, any>) {
         return [Sequelize.Op.like, `${value}%`];
       }
 
-      return [key, value];
+      return [R.prop(key, operators), value];
     }),
     R.toPairs,
   )(queryOperator);
