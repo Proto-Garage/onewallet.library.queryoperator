@@ -21,7 +21,7 @@ const operators = {
   gte: Op.gte,
   lt: Op.lt,
   lte: Op.lte,
-  overlap: Op.overlap,
+  overlaps: Op.overlap,
   startsWith: Op.like,
 };
 

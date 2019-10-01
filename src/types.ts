@@ -9,17 +9,18 @@ type Operator<T = any> = Partial<{
   lte: T;
   in: T[];
   nin: T[];
-  overlap: T[];
+  overlaps: T[];
   startsWith: string;
 }>;
-export type QueryOperator<TValue, TOperator extends keyof Operator> =
+
+export type QueryOperator<TValue, TOperator extends keyof Operator = keyof Operator> =
   Pick<Operator<TValue>, TOperator>;
 
 export type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith'>;
 
 export type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 
-export type IDArrayQueryOperator = QueryOperator<ID, 'overlap'>;
+export type IDArrayQueryOperator = QueryOperator<ID, 'overlaps'>;
 
 export type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 

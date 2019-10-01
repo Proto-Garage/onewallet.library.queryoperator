@@ -14,7 +14,7 @@ const operators = {
     gte: sequelize_1.Op.gte,
     lt: sequelize_1.Op.lt,
     lte: sequelize_1.Op.lte,
-    overlap: sequelize_1.Op.overlap,
+    overlaps: sequelize_1.Op.overlap,
     startsWith: sequelize_1.Op.like,
 };
 function convertToSequelizeQuery(queryOperator) {

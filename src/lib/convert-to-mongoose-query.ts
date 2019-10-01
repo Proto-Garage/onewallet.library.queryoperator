@@ -12,7 +12,7 @@ import {
 } from '../types';
 
 const operators = new Set([
-  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlap', 'startsWith',
+  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'startsWith',
 ]);
 
 type NumberMongooseQuery = Partial<{
@@ -75,7 +75,7 @@ function convertToMongooseQuery(queryOperator: Record<any, any>) {
         return ['$regex', regex];
       }
 
-      if (key === 'overlap') {
+      if (key === 'overlaps') {
         return ['$in', value];
       }
 
