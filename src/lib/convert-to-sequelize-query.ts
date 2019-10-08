@@ -9,6 +9,7 @@ import {
   FloatQueryOperator,
   DateTimeQueryOperator,
   DateQueryOperator,
+  BooleanQueryOperator,
   ID,
 } from '../types';
 
@@ -47,6 +48,11 @@ type DateSequelizeQuery = Partial<{
   [Op.notIn]: Date[];
 }>;
 
+type BooleanSequelizeQuery = Partial<{
+  [Op.eq]: boolean;
+  [Op.ne]: boolean;
+}>;
+
 function convertToSequelizeQuery(queryOperator: StringQueryOperator): Partial<{
   [Op.eq]: string;
   [Op.ne]: string;
@@ -67,6 +73,7 @@ function convertToSequelizeQuery(queryOperator: IntQueryOperator): NumberSequeli
 function convertToSequelizeQuery(queryOperator: FloatQueryOperator): NumberSequelizeQuery;
 function convertToSequelizeQuery(queryOperator: DateTimeQueryOperator): DateSequelizeQuery;
 function convertToSequelizeQuery(queryOperator: DateQueryOperator): DateSequelizeQuery;
+function convertToSequelizeQuery(queryOperator: BooleanQueryOperator): BooleanSequelizeQuery;
 function convertToSequelizeQuery(queryOperator: Record<any, any>) {
   return R.compose<any, any, any, any, any>(
     R.fromPairs,

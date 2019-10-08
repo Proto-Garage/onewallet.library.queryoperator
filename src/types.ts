@@ -29,3 +29,5 @@ export type FloatQueryOperator = IntQueryOperator;
 export type DateTimeQueryOperator = QueryOperator<Date, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 
 export type DateQueryOperator = DateTimeQueryOperator;
+
+export type BooleanQueryOperator = QueryOperator<boolean, 'eq' | 'ne'>;

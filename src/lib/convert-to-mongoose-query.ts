@@ -8,6 +8,7 @@ import {
   FloatQueryOperator,
   DateTimeQueryOperator,
   DateQueryOperator,
+  BooleanQueryOperator,
   ID,
 } from '../types';
 
@@ -37,6 +38,11 @@ type DateMongooseQuery = Partial<{
   $nin: Date[];
 }>;
 
+type BooleanMongooseQuery = Partial<{
+  $eq: boolean;
+  $ne: boolean;
+}>;
+
 function convertToMongooseQuery(queryOperator: StringQueryOperator): Partial<{
   $eq: string;
   $ne: string;
@@ -57,6 +63,7 @@ function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongoose
 function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;
 function convertToMongooseQuery(queryOperator: DateTimeQueryOperator): DateMongooseQuery;
 function convertToMongooseQuery(queryOperator: DateQueryOperator): DateMongooseQuery;
+function convertToMongooseQuery(queryOperator: BooleanQueryOperator): BooleanMongooseQuery;
 function convertToMongooseQuery(queryOperator: Record<any, any>) {
   return R.compose<any, any, any, any, any>(
     R.fromPairs,

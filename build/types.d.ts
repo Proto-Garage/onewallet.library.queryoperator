@@ -19,5 +19,6 @@ export declare type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' 
 export declare type FloatQueryOperator = IntQueryOperator;
 export declare type DateTimeQueryOperator = QueryOperator<Date, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 export declare type DateQueryOperator = DateTimeQueryOperator;
+export declare type BooleanQueryOperator = QueryOperator<boolean, 'eq' | 'ne'>;
 export {};
 //# sourceMappingURL=types.d.ts.map
