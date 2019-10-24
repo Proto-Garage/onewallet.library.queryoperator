@@ -16,7 +16,7 @@ type Operator<T = any> = Partial<{
 export type QueryOperator<TValue, TOperator extends keyof Operator = keyof Operator> =
   Pick<Operator<TValue>, TOperator>;
 
-export type StringQueryOperator<T extends string> = QueryOperator<T, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith'>;
+export type StringQueryOperator<T extends string = string> = QueryOperator<T, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith'>;
 
 export type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 

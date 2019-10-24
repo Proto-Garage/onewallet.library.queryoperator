@@ -16,6 +16,7 @@
   },
   "author": "High Output Ventures",
   "devDependencies": {
+    "@types/bluebird": "^3.5.28",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@typescript-eslint/eslint-plugin": "~1.6.0",
