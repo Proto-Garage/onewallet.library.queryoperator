@@ -16,6 +16,7 @@ const operators = {
     lte: sequelize_1.Op.lte,
     overlaps: sequelize_1.Op.overlap,
     startsWith: sequelize_1.Op.like,
+    contains: sequelize_1.Op.like,
 };
 function convertToSequelizeQuery(queryOperator) {
     return ramda_1.default.compose(ramda_1.default.fromPairs, ramda_1.default.filter(ramda_1.default.identity), ramda_1.default.map(([key, value]) => {
@@ -24,6 +25,9 @@ function convertToSequelizeQuery(queryOperator) {
         }
         if (key === 'startsWith') {
             return [sequelize_1.Op.like, `${value}%`];
+        }
+        if (key === 'contains') {
+            return [sequelize_1.Op.like, `%${value}%`];
         }
         return [ramda_1.default.prop(key, operators), value];
     }), ramda_1.default.toPairs)(queryOperator);

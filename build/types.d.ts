@@ -10,10 +10,11 @@ declare type Operator<T = any> = Partial<{
     nin: T[];
     overlaps: T[];
     startsWith: string;
+    contains: string;
 }>;
 export declare type QueryOperator<TValue, TOperator extends keyof Operator = keyof Operator> = Pick<Operator<TValue>, TOperator>;
 export declare type EnumQueryOperator<T> = QueryOperator<T, 'eq' | 'ne' | 'in' | 'nin'>;
-export declare type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith'>;
+export declare type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith' | 'contains'>;
 export declare type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 export declare type IDArrayQueryOperator = QueryOperator<ID, 'overlaps'>;
 export declare type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;

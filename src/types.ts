@@ -11,6 +11,7 @@ type Operator<T = any> = Partial<{
   nin: T[];
   overlaps: T[];
   startsWith: string;
+  contains: string;
 }>;
 
 export type QueryOperator<TValue, TOperator extends keyof Operator = keyof Operator> =
@@ -18,7 +19,7 @@ export type QueryOperator<TValue, TOperator extends keyof Operator = keyof Opera
 
 export type EnumQueryOperator<T> = QueryOperator<T, 'eq' | 'ne' | 'in' | 'nin'>;
 
-export type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith'>;
+export type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith' | 'contains'>;
 
 export type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 

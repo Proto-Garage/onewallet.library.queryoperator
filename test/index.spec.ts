@@ -51,6 +51,18 @@ describe('convertToMongooseQuery(queryOperator: StringQueryOperator)', () => {
       });
     });
   });
+
+  describe('Given a `contains` operator', () => {
+    it('should return a valid Mongoose query with $regex operator', () => {
+      const queryOperator = {
+        contains: 'mem',
+      };
+
+      expect(convertToMongooseQuery(queryOperator)).to.deep.equal({
+        $regex: /^.*mem.*$/i,
+      });
+    });
+  });
 });
 
 describe('convertToMongooseQuery(queryOperator: IntQueryOperator)', () => {
@@ -129,13 +141,25 @@ describe('convertToSequelizeQuery(queryOperator: StringQueryOperator)', () => {
   });
 
   describe('Given a `startsWith` operator', () => {
-    it('should return a valid Mongoose query with $regex operator', () => {
+    it('should return a valid Sequelize query with LIKE operator', () => {
       const queryOperator = {
         startsWith: 'mem',
       };
 
       expect(convertToSequelizeQuery(queryOperator)).to.deep.equal({
-        [Sequelize.Op.like]: 'mem$',
+        [Sequelize.Op.like]: 'mem%',
+      });
+    });
+  });
+
+  describe('Given a `contains` operator', () => {
+    it('should return a valid Sequelize query with LIKE operator', () => {
+      const queryOperator = {
+        contains: 'mem',
+      };
+
+      expect(convertToSequelizeQuery(queryOperator)).to.deep.equal({
+        [Sequelize.Op.like]: '%mem%',
       });
     });
   });

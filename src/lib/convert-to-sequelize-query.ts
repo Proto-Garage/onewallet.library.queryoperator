@@ -24,6 +24,7 @@ const operators = {
   lte: Op.lte,
   overlaps: Op.overlap,
   startsWith: Op.like,
+  contains: Op.like,
 };
 
 type NumberSequelizeQuery = Partial<{
@@ -85,6 +86,10 @@ function convertToSequelizeQuery(queryOperator: Record<any, any>) {
 
       if (key === 'startsWith') {
         return [Op.like, `${value}%`];
+      }
+
+      if (key === 'contains') {
+        return [Op.like, `%${value}%`];
       }
 
       return [R.prop(key, operators), value];

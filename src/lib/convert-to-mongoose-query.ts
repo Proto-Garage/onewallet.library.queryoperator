@@ -13,7 +13,7 @@ import {
 } from '../types';
 
 const operators = new Set([
-  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'startsWith',
+  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'startsWith', 'contains',
 ]);
 
 type NumberMongooseQuery = Partial<{
@@ -76,6 +76,15 @@ function convertToMongooseQuery(queryOperator: Record<any, any>) {
       if (key === 'startsWith') {
         const regex = new RegExp(
           `^${value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}.*$`,
+          'i',
+        );
+
+        return ['$regex', regex];
+      }
+
+      if (key === 'contains') {
+        const regex = new RegExp(
+          `^.*${value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}.*$`,
           'i',
         );
 
