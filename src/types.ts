@@ -10,6 +10,8 @@ type Operator<T = any> = Partial<{
   in: T[];
   nin: T[];
   overlaps: T[];
+  includesAny: T[];
+  excludesAll: T[];
   startsWith: string;
   contains: string;
 }>;
@@ -23,7 +25,9 @@ export type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'ni
 
 export type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
 
-export type IDArrayQueryOperator = QueryOperator<ID, 'overlaps'>;
+export type ArrayQueryOperator<T> = QueryOperator<T, 'overlaps' | 'includesAny' | 'excludesAll'>;
+
+export type IDArrayQueryOperator = ArrayQueryOperator<ID>;
 
 export type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 

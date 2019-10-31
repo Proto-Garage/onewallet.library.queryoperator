@@ -38,6 +38,7 @@ declare function convertToMongooseQuery(queryOperator: IDQueryOperator): Partial
 }>;
 declare function convertToMongooseQuery(queryOperator: IDArrayQueryOperator): Partial<{
     $in: ID[];
+    $nin: ID[];
 }>;
 declare function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongooseQuery;
 declare function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;

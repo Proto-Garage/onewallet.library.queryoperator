@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ramda_1 = __importDefault(require("ramda"));
 const operators = new Set([
-    'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'startsWith', 'contains',
+    'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'includesAny', 'excludesAll', 'startsWith', 'contains',
 ]);
 function convertToMongooseQuery(queryOperator) {
     return ramda_1.default.compose(ramda_1.default.fromPairs, ramda_1.default.filter(ramda_1.default.identity), ramda_1.default.map(([key, value]) => {
@@ -20,8 +20,11 @@ function convertToMongooseQuery(queryOperator) {
             const regex = new RegExp(`^.*${value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}.*$`, 'i');
             return ['$regex', regex];
         }
-        if (key === 'overlaps') {
+        if (key === 'overlaps' || key === 'includesAny') {
             return ['$in', value];
+        }
+        if (key === 'excludesAll') {
+            return ['$nin', value];
         }
         return [`$${key}`, value];
     }), ramda_1.default.toPairs)(queryOperator);

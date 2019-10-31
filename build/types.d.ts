@@ -9,6 +9,8 @@ declare type Operator<T = any> = Partial<{
     in: T[];
     nin: T[];
     overlaps: T[];
+    includesAny: T[];
+    excludesAll: T[];
     startsWith: string;
     contains: string;
 }>;
@@ -16,7 +18,8 @@ export declare type QueryOperator<TValue, TOperator extends keyof Operator = key
 export declare type EnumQueryOperator<T> = QueryOperator<T, 'eq' | 'ne' | 'in' | 'nin'>;
 export declare type StringQueryOperator = QueryOperator<string, 'eq' | 'ne' | 'in' | 'nin' | 'startsWith' | 'contains'>;
 export declare type IDQueryOperator = QueryOperator<ID, 'eq' | 'ne' | 'in' | 'nin'>;
-export declare type IDArrayQueryOperator = QueryOperator<ID, 'overlaps'>;
+export declare type ArrayQueryOperator<T> = QueryOperator<T, 'overlaps' | 'includesAny' | 'excludesAll'>;
+export declare type IDArrayQueryOperator = ArrayQueryOperator<ID>;
 export declare type IntQueryOperator = QueryOperator<number, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;
 export declare type FloatQueryOperator = IntQueryOperator;
 export declare type DateTimeQueryOperator = QueryOperator<Date, 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin'>;

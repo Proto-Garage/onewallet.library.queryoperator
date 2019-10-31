@@ -13,7 +13,7 @@ import {
 } from '../types';
 
 const operators = new Set([
-  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'startsWith', 'contains',
+  'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'includesAny', 'excludesAll', 'startsWith', 'contains',
 ]);
 
 type NumberMongooseQuery = Partial<{
@@ -58,6 +58,7 @@ function convertToMongooseQuery(queryOperator: IDQueryOperator): Partial<{
 }>
 function convertToMongooseQuery(queryOperator: IDArrayQueryOperator): Partial<{
   $in: ID[];
+  $nin: ID[];
 }>
 function convertToMongooseQuery(queryOperator: IntQueryOperator): NumberMongooseQuery;
 function convertToMongooseQuery(queryOperator: FloatQueryOperator): NumberMongooseQuery;
@@ -91,8 +92,12 @@ function convertToMongooseQuery(queryOperator: Record<any, any>) {
         return ['$regex', regex];
       }
 
-      if (key === 'overlaps') {
+      if (key === 'overlaps' || key === 'includesAny') {
         return ['$in', value];
+      }
+
+      if (key === 'excludesAll') {
+        return ['$nin', value];
       }
 
       return [`$${key}`, value];
