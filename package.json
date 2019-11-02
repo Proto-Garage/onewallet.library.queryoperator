@@ -37,6 +37,6 @@
     "@types/validator": "^10.11.2",
     "lru-cache": "^5.1.1",
     "ramda": "^0.26.1",
-    "sequelize": "^5.10.3"
+    "sequelize": "^5.15.1"
   }
 }
