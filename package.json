@@ -8,7 +8,8 @@
     "lint:fix": "eslint --fix src/**/*.ts",
     "clean": "rimraf /build",
     "build": "npm run clean && tsc",
-    "test": "DEBUG=error*,warn*,info* TS_NODE_PROJECT=tsconfig.json TS_NODE_FILES=true mocha ./test/**/*.spec.ts"
+    "test": "DEBUG=error*,warn*,info* TS_NODE_PROJECT=tsconfig.json TS_NODE_FILES=true mocha ./test/**/*.spec.ts",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -38,5 +39,9 @@
     "lru-cache": "^5.1.1",
     "ramda": "^0.26.1",
     "sequelize": "^5.15.1"
+  },
+  "peerDependencies": {
+    "rimraf": "^2.6.3",
+    "typescript": "^3.5.3"
   }
 }
