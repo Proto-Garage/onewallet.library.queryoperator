@@ -16,6 +16,10 @@ const operators = new Set([
   'eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'in', 'nin', 'overlaps', 'includesAny', 'excludesAll', 'startsWith', 'contains',
 ]);
 
+function escape(value: string) {
+  return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
 type NumberMongooseQuery = Partial<{
   $eq: number;
   $ne: number;
@@ -76,7 +80,7 @@ function convertToMongooseQuery(queryOperator: Record<any, any>) {
 
       if (key === 'startsWith') {
         const regex = new RegExp(
-          `^${value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}.*$`,
+          `^${escape(value)}.*$`,
           'i',
         );
 
@@ -85,7 +89,7 @@ function convertToMongooseQuery(queryOperator: Record<any, any>) {
 
       if (key === 'contains') {
         const regex = new RegExp(
-          `^.*${value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}.*$`,
+          `^.*${escape(value)}.*$`,
           'i',
         );
 
