@@ -39,7 +39,7 @@
     "@types/validator": "^12.0.1",
     "lru-cache": "^5.1.1",
     "ramda": "^0.26.1",
-    "sequelize": "^5.15.1"
+    "sequelize": "^5.21.3"
   },
   "peerDependencies": {
     "rimraf": "^2.6.3",
