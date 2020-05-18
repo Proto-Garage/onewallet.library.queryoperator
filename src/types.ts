@@ -37,4 +37,4 @@ export type DateTimeQueryOperator = QueryOperator<Date, 'eq' | 'ne' | 'gt' | 'gt
 
 export type DateQueryOperator = DateTimeQueryOperator;
 
-export type BooleanQueryOperator = QueryOperator<boolean, 'eq' | 'ne'>;
+export type BooleanQueryOperator = QueryOperator<boolean, 'eq' | 'ne' | 'in'>;
